@@ -1,19 +1,22 @@
 # Java-Task-Manager
-#Student task tracker
+# Student task tracker
 
-A java commandline app to help student manage tasks
-##Planed features
--Add task
--Delete task
--Mark task complete
--list all the tasks
--Search task by keyword
+A java commandline application to help students manage tasks.
+## Features
+- Add task
+- Delete task
+- Mark task complete
+- list all the tasks
+- Search task by keyword
+- Save tasks from the file
+- Load tasks from file
 
-#Tech used 
--java
--objected-oriented programming 
--Arraylist
+# Technologies used 
+- Java
+- Objected-Oriented Programming 
+- Arraylist
+- File I/O
 
 
-#status 
-completed basic version
+# Status 
+Completed basic version
