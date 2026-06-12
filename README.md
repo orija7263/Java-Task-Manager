@@ -10,6 +10,8 @@ A java commandline application to help students manage tasks.
 - Search task by keyword
 - Save tasks from the file
 - Load tasks from file
+- Priority Levels (High,Low)
+- Due Dates
 
 # Technologies used 
 - Java
