@@ -10,16 +10,30 @@ package com.mycompany.tasktest;
  */import java.util.*;
   import java.io.FileWriter;
 import java.io.File;
-public class TaskTest {
-
-    public static void main(String[] args)
-    {
-        ArrayList <Task>tasks =new ArrayList<Task>();
-      Scanner keyboard = new Scanner(System.in);
-         //load task here
-         
+public class TaskTest
+{
+   static void saveTasks(ArrayList<Task> tasks)
+      {
+           try
+           {
+               FileWriter writer=new FileWriter("tasks.txt");
+               for(Task t:tasks)
+               {
+                writer.write(t.title + "," + t.completed +","+ t.priority+ ","+t.dueDate+"\n");
+               
        
-           try{  
+               }
+               writer.close();
+               System.out.println("Task saved sucessfully.");
+           }
+           catch(Exception e)
+                   {
+                       System.out.println("Error while saving tasks.");   
+                   }
+      }
+   static void loadTasks(ArrayList<Task> tasks)
+   {
+        try{  
          File file=new File("tasks.txt");
          Scanner fileReader=new Scanner(file);
          
@@ -28,9 +42,13 @@ public class TaskTest {
              String line=fileReader.nextLine();
              String[] parts=line.split(",");
              String tit=parts[0];
-             boolean completed=Boolean.parseBoolean(parts[1]);
              
-             Task t=new Task(tit,completed);
+             boolean completed=Boolean.parseBoolean(parts[1]);
+             String pit=parts[2];
+             String due=parts[3];
+            
+             
+             Task t=new Task(tit,completed,pit,due);
              tasks.add(t);
              
          }
@@ -39,7 +57,17 @@ public class TaskTest {
            catch(Exception e)
            {
                System.out.println("No saved tasks found");
-           }  
+           }    
+   }
+    public static void main(String[] args)
+    {
+       
+        ArrayList <Task>tasks =new ArrayList<Task>();
+      Scanner keyboard = new Scanner(System.in);
+         //load task here
+         
+       loadTasks(tasks);
+        
          
          int choice=0;
       while(choice!=7)
@@ -60,7 +88,11 @@ public class TaskTest {
        {
            System.out.println("Enter the task you want to add: ");
            String tale=keyboard.nextLine();
-           Task tit =new Task(tale,false);
+           System.out.println("Enter the priority(High/Low): ");
+           String piro=keyboard.nextLine();
+           System.out.println("Enter the due date: ");
+           String due= keyboard.nextLine();
+           Task tit =new Task(tale,false,piro,due);
            tasks.add(tit);
        }
        // check if the size of the array list is not 0 if not list the tasks by calling the object printTask.
@@ -127,22 +159,7 @@ public class TaskTest {
        }
        if(choice==6)
        {
-           try
-           {
-               FileWriter writer=new FileWriter("tasks.txt");
-               for(Task t:tasks)
-               {
-                writer.write(t.title + "," + t.completed +"\n");
-               
-       
-               }
-               writer.close();
-               System.out.println("Task saved sucessfully.");
-           }
-           catch(Exception e)
-                   {
-                       System.out.println("Error while saving tasks.");   
-                   }
+          saveTasks(tasks);
        }
        if(choice==7)
        {
@@ -151,6 +168,7 @@ public class TaskTest {
            
             
         }
+    
         
        
     }

@@ -1,2 +1,2 @@
-go to the gym,true
-study java,false
+Go to the gym,false,High,2026-12-6
+Swimming,false,Low,2026-13-6
